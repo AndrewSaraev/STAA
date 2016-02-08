@@ -2,15 +2,17 @@
 *STAA* is an image effect for Unity engine. It is an atempt to implement a temporal AA based just on color data without trying to use any motion reprojection. It jitters the camera projection matrix and combine the rendered frame with history frames.
 
 ### Setup
-- Add *STAA.cs* component to a camera game object
+- Add *STAA.cs* to a camera game object
 - Assign *STAA.shader* as a shader property of STAA component
 
 ### Settings
 - *Pattern* – sub-pixel sample count (2x Quincunx, 4x, 8x)
 - *Rejection* – sensitivity of a processed pixel fallback to an unjittered raw pixel. Prevents ghosting
 
-### Wrapping around another anti-aliasing image effect
-Usually rejected pixels fall back to raw frame data, but that data can be altered with the help of the *STAAResolve.cs* component. A components should go in this order:
+### Wrapping around another anti-aliasing
+Usually rejected pixels fall back to raw frame data, but that data can be altered with the help of the *STAAResolve.cs* to get the best of different types of anti-aliasing.
+
+Components should go in this order:
 - *STAA*
 - any non-jittering anti-aliasing image effect
 - *STAA Resolve*
