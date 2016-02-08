@@ -17,6 +17,9 @@ Components should go in this order:
 - any non-jittering anti-aliasing image effect
 - *STAA Resolve*
 
+### Known issues
+- Orthographic camera projection is currently not supported
+
 ### License
 Copyright (c) 2016 Andrey Saraev
 
