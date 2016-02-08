@@ -1,23 +1,28 @@
 # Simple Temporal Anti-Aliasing
-*STAA* is an image effect for Unity engine. It is an atempt to implement a temporal AA based just on a color data without trying to use any motion reprojection. It jitters the camera projection matrix and combine the rendered frame with history frames.
+*STAA* is an image effect for Unity engine. It is an atempt to implement a temporal AA based just on a color data without trying to use any motion reprojection. It jitters the camera projection matrix and combines the rendered frame with a history frames.
 
 ### Setup
-- Add *STAA.cs* to a camera game object
-- Assign *STAA.shader* as a shader property of STAA component
+- Add the *STAA.cs* to a camera game object
+- Assign the *STAA.shader* as a shader property of *STAA* component
 
 ### Settings
 - *Pattern* – sub-pixel sampling pattern (2x Quincunx, 4x, 8x)
 - *Rejection* – sensitivity of a fallback to a simply unjittered raw pixel. Prevents ghosting
 
-### Wrapping around another anti-aliasing
-Usually rejected pixels fall back to raw frame data, but that data can be altered with a help of *STAAResolve.cs* to get the best of different types of anti-aliasing.
+### Combination with another anti-aliasing
 
-Components should go in this order:
+###### Wrapping ("or")
+Usually rejected pixels fall back to raw frame data. But that data can be altered with a help of *STAAResolve.cs* which will let different AA algorithms do their best. To make it work a components should go in this order:
 - *STAA*
-- any non-jittering anti-aliasing image effect
+- any non-jittering anti-aliasing image effects
 - *STAA Resolve*
 
-### Known issues
+For this case the pattern should be at least 4x (a lone 2x Quincunx usually look worse than FXAA).
+
+###### Addition ("and")
+If you're okay with a not very crisp output, you can try to combine *STAA* with another anti-aliasing image effect without using *STAAResolve*. The 2x Quincunx pattern should work fine for that purpose.
+
+### Known Issues
 - Orthographic camera projection is currently not supported
 
 ### License
