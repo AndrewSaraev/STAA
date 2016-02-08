@@ -10,7 +10,7 @@
 - *Rejection* – sensitivity of a processed pixel fallback to an unjittered raw pixel. Prevents ghosting
 
 ### Wrapping around another anti-aliasing
-Usually rejected pixels fall back to raw frame data, but that data can be altered with the help of the *STAAResolve.cs* to get the best of different types of anti-aliasing.
+Usually rejected pixels fall back to raw frame data, but that data can be altered with the help of *STAAResolve.cs* to get the best of different types of anti-aliasing.
 
 Components should go in this order:
 - *STAA*
